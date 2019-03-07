@@ -16,7 +16,7 @@ if [ -z "$vDomain" ]
 then
 	showSyntax
 else
-	docker create volume $vDomain-data
+	docker volume create $vDomain-data
 	docker run -ti --name $vDomain-SimpleHost --volume=$vDomain-data -e VIRTUAL_HOST=$vDomain -d $container
 fi
 
