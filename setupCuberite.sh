@@ -15,6 +15,7 @@ then
         showSyntax
 else
 	echo "Starting Cuberite..."
-	docker run --tty -d --name="mc-cuberite" -p $WEBPORT:8080 -p $MCPORT:25565 beevelop/cuberite
+	docker volume create cuberite-$MCPORT-data
+	docker run --tty -d --name="mc-cuberite" -p $WEBPORT:8080 -p $MCPORT:25565 --volume=cuberite-$MCPORT-data beevelop/cuberite
 	echo "Done."
 fi
