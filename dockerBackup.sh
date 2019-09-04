@@ -2,11 +2,26 @@
 
 CONTAINER=$1
 
-echo "Backing up $CONTAINER to /BACKUP..."
-docker save -o /BACKUP/$CONTAINER.tar $CONTAINER
+showSyntax() {
+	echo "Thy-IT Docker Backup Script"
+	echo "---------------------------"
+	echo "Syntax: $0 <container>"
+	echo ""
+}
 
-echo "Compressing $CONTAINER backup..."
-gzip /BACKUP/$CONTAINER
+if [ "$EUID" -ne 0 ]
+	then echo "Please run as sudo"
+fi
 
-echo "Done."
+if [ -z "$HOSTNAME" ]
+then
+	showSyntax
+else
+	echo "Backing up $CONTAINER to /BACKUP..."
+	docker save -o /BACKUP/$CONTAINER.tar $CONTAINER
+
+	echo "Compressing $CONTAINER backup..."
+	gzip /BACKUP/$CONTAINER
+	echo "Done."
+fi
 exit 0
