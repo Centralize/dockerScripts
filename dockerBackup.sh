@@ -13,7 +13,7 @@ if [ "$EUID" -ne 0 ]
 	then echo "Please run as sudo"
 fi
 
-if [ -z "$HOSTNAME" ]
+if [ -z "$CONTAINER" ]
 then
 	showSyntax
 else
