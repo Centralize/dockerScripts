@@ -18,4 +18,4 @@ time docker run -ti --name $CustomerName-mysql --network $CustomerName-wordpress
 echo "Creating Wordpress Server for $CustomerName with access from the Domain: $vDomain."
 time docker run -ti --name $CustomerName-wordpress --network $CustomerName-wordpress-net -e DB_SERVER=$CustomerName-mysql -e VIRTUAL_HOST=$vDomain -d wordpress:latest
 
-echo "Done."
+echo "Done"
