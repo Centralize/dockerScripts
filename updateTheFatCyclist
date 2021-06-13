@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+CONTAINERID=`docker ps | grep thefatcyclist | cut -d ' ' -f 1`
+
+docker pull openlabdk/thefatcyclist:v1
+docker stop $CONTAINERID
+docker rm $CONTAINERID
+docker run -ti --name thefatcyclist -e VIRTUAL_HOST=tfc.mycraft.dk -d openlabdk/thefatcyclist:v1
+echo "Done."
+exit 0
